@@ -11,7 +11,7 @@ import { GoHomeFill } from "react-icons/go";
 export default function Header() {
   return (
     <div>
-      <div className="bg-paletteText2 !h-16 content-center">
+      <div className="!h-16 content-center">
         <div className="flex justify-between">
           <div className="">
             <span className="text-xl text-white">(っ◔◡◔)っ Emanuele Manniti </span>
@@ -36,7 +36,7 @@ export default function Header() {
                 Works
               </Button>
             </Link>
-            <Link href="/" legacyBehavior passHref>
+            <Link href="/contacts" legacyBehavior passHref>
               <Button variant="default" className="text-paletteText border-paletteText text-2xl bg-transparent ">
                 <RiContactsFill className="mr-1" />
                 Contacts
