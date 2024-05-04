@@ -1,6 +1,6 @@
 "use client";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import React from "react";
+import React, { useRef } from "react";
 import { EDUCATIONALS_CARDS, EXPERIENCES_CARDS, SKILLS_CARDS } from "../constants";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
@@ -9,8 +9,8 @@ import SpringAnimationText from "@/components/FramerMotionComponents/SpringAnima
 import TextTypingAnimation from "@/components/FramerMotionComponents/TextTypingAnimation";
 import { motion } from "framer-motion";
 
-export default function page() {
-  const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
+export default function Page() {
+  const plugin = useRef(Autoplay({ delay: 2000, stopOnInteraction: true }));
 
   return (
     <div className="flex justify-center">

@@ -11,10 +11,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@radix-ui/react-toast";
 import emailjs from "emailjs-com";
 
-export default function page() {
-  const [name, setname] = useState("");
-  const [email, setemail] = useState("");
-  const [message, setmessage] = useState("");
+export default function Page() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
   const { toast } = useToast();
 
   function handleDisableSend() {
@@ -112,7 +112,7 @@ export default function page() {
                 <Label className="text-white" htmlFor="email">
                   Name
                 </Label>
-                <Input onChange={(e) => setname(e.target.value)} className="max-w-[200px]" placeholder="Your Name" />
+                <Input onChange={(e) => setName(e.target.value)} className="max-w-[200px]" placeholder="Your Name" />
               </div>
               <div>
                 <div className="max-w-sm items-center gap-1.5">
@@ -120,7 +120,7 @@ export default function page() {
                     Mail
                   </Label>
                   <Input
-                    onChange={(e) => setemail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="min-w-[300px]"
                     type="email"
                     placeholder="Your Email"
@@ -134,7 +134,7 @@ export default function page() {
               </div>
             </div>
             <div className="flex justify-center mt-10">
-              <Textarea onChange={(e) => setmessage(e.target.value)} className="max-w-[500px]" placeholder="Your Messge" />
+              <Textarea onChange={(e) => setMessage(e.target.value)} className="max-w-[500px]" placeholder="Your Messge" />
             </div>
             <div className="flex justify-center mt-10">
               <Button onClick={() => sendEmail()} variant={"outline"} disabled={handleDisableSend()}>
