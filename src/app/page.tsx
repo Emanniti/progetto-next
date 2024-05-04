@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import SpringAnimationText from "@/components/FramerMotionComponents/SpringAnimationText";
@@ -13,7 +12,7 @@ export default function Home() {
     <div className="">
       <div className="h-screen flex justify-center">
         <div className="place-content-center">
-          <div className="-mt-60">
+          <div className="">
             <SpringAnimationText
               fontSize="text-4xl"
               color="text-paletteText"
