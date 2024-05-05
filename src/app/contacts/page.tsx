@@ -44,6 +44,9 @@ export default function Page() {
             title: "Email sent!",
             description: "Email successfully sent to the recipient provided.",
           });
+          setTimeout(function () {
+            document.location.href = "/";
+          }, 4000);
           sendMail(name, email, message);
         } else {
           toast({
@@ -143,11 +146,9 @@ export default function Page() {
             </div>
 
             <div className="flex justify-center mt-10">
-              <Link href="/">
-                <Button onClick={() => sendEmail()} variant={"outline"} disabled={handleDisableSend()}>
-                  Send Email
-                </Button>
-              </Link>
+              <Button onClick={() => sendEmail()} variant={"outline"} disabled={handleDisableSend()}>
+                Send Email
+              </Button>
             </div>
           </div>
         </div>
