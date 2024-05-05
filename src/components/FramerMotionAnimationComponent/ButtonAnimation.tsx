@@ -3,7 +3,6 @@ import { FaFileDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { AwesomeButtonSocial, AwesomeButtonProgress } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-
 export default function ButtonAnimation() {
   return (
     <div className="mt-28 flex justify-center gap-5">
@@ -68,16 +67,18 @@ export default function ButtonAnimation() {
             ease: [0, 0.71, 0.2, 1.01],
           }}
         >
-          <AwesomeButtonProgress
-          before={<FaFileDownload/>}
-            type="secondary"
-            onPress={async (element, next) => {
-              // await for something then call
-              next();
-            }}
-          >
-            Download CV
-          </AwesomeButtonProgress>
+          <a style={{ textDecoration: "inherit", color: "inherit" }} href="../../../../EmanueleMannitiCV.pdf" download>
+            <AwesomeButtonProgress
+              before={<FaFileDownload />}
+              type="secondary"
+              onPress={async (element, next) => {
+                // await for something then call
+                next();
+              }}
+            >
+              Download CV
+            </AwesomeButtonProgress>
+          </a>
         </motion.div>
       </motion.div>
     </div>

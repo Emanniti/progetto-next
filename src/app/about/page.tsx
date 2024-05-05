@@ -14,8 +14,7 @@ export default function Page() {
 
   return (
     <div className="flex justify-center">
-      <div className="mt-10">
-        <div>
+      <div className="mt-10 ">
           <SpringAnimationText
             fontSize="text-4xl"
             color="text-paletteText"
@@ -24,19 +23,21 @@ export default function Page() {
             key={"1"}
             delay={0}
           />
-        </div>
-        <div className="max-w-[800px] mt-3">
+        <div className="max-w-[800px] mt-3 flex justify-center">
+          <div>
+
           <TextTypingAnimation
             color="text-white "
             delay={100}
             duration={0.25}
             fontSize="text-2xl"
             text="I'm Emanuele, a passionate programmer with a flair for crafting innovative
-              software solutions. With a solid background, I thrive on diving into complex coding challenges and emerging with
-              elegant solutions. My interests span across various domains of technology, from web development to artificial
-              intelligence. I take pride in my technical prowess. Beyond coding, I'm driven by a relentless curiosity and a desire
-              to continually expand my skill set. Let's embark on this journey of innovation together!"
-          />
+            software solutions. With a solid background, I thrive on diving into complex coding challenges and emerging with
+            elegant solutions. My interests span across various domains of technology, from web development to artificial
+            intelligence. I take pride in my technical prowess. Beyond coding, I'm driven by a relentless curiosity and a desire
+            to continually expand my skill set. Let's embark on this journey of innovation together!"
+            />
+            </div>
         </div>
         <div className="text-center mt-10">
           <SpringAnimationText fontSize="text-4xl" color="text-paletteText" text="Skills" duration={0.3} key={"2"} delay={2} />

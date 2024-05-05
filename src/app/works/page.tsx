@@ -88,7 +88,7 @@ export default function page() {
                 </div>
                 <div>
                   <span className="text-3xl text-white">
-                    Preview: <a className="text-paletteText">crowdmoovi.com</a>
+                    Preview: <a href="https://crowdmoovi.com/" target="_blank" className="text-paletteText">crowdmoovi.com</a>
                   </span>
                 </div>
               </div>
@@ -157,7 +157,7 @@ export default function page() {
                 </div>
                 <div>
                   <span className="text-3xl text-white">
-                    Preview: <a className="text-paletteText">escape-site.vercel.app</a>
+                    Preview: <a href="https://escape-site.vercel.app/" target="_blank" className="text-paletteText">escape-site.vercel.app</a>
                   </span>
                 </div>
               </div>
