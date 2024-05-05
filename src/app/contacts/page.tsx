@@ -28,20 +28,20 @@ export default function Page() {
   function sendEmail() {
     debugger;
     if (
-      process.env.VERCEL_SERVICE !== undefined &&
-      process.env.VERCEL_TEMPLATE !== undefined &&
-      process.env.VERCEL_USER_ID !== undefined
+      process.env.NEXT_PUBLIC_SERVICE !== undefined &&
+      process.env.NEXT_PUBLIC_TEMPLATE !== undefined &&
+      process.env.NEXT_PUBLIC_USER_ID !== undefined
     ) {
       emailjs
         .send(
-          process.env.VERCEL_SERVICE,
-          process.env.VERCEL_TEMPLATE,
+          process.env.NEXT_PUBLIC_SERVICE,
+          process.env.NEXT_PUBLIC_TEMPLATE,
           {
             from_name: name,
             to_name: email,
             message: message,
           },
-          process.env.VERCEL_USER_ID
+          process.env.NEXT_PUBLIC_USER_ID
         )
         .then(
           (_result) => {
