@@ -26,7 +26,10 @@ export default function Page() {
   }
 
   function sendEmail() {
-    debugger;
+
+    console.log(process.env.SERVICE)
+    console.log(process.env.TEMPLATE)
+    console.log(process.env.USER_ID)
     if (
       process.env.SERVICE !== undefined &&
       process.env.TEMPLATE !== undefined &&
