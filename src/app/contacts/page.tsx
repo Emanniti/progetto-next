@@ -6,16 +6,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { IoMdMail } from "react-icons/io";
 import { useToast } from "@/components/ui/use-toast";
+import ReCAPTCHA from "react-google-recaptcha";
+import { useRef } from "react";
+import { fetchCall } from "./action";
+import Link from "next/link";
 import { ToastAction } from "@radix-ui/react-toast";
-import emailjs from "emailjs-com";
+import sendMail from "@/utils/sendMail";
 
 export default function Page() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [captchaCompleted, setCaptchaCompleted] = useState(true);
   const { toast } = useToast();
+  const captchaRef: any = useRef(null);
+
+  async function verifyCaptcha(test: any) {
+    return await fetchCall(test);
+  }
 
   function handleDisableSend() {
     if (name !== "" && email !== "" && message !== "" && email.includes("@") && email.includes(".")) {
@@ -25,47 +34,35 @@ export default function Page() {
     }
   }
 
-  function sendEmail() {
-    if (
-      process.env.NEXT_PUBLIC_SERVICE !== undefined &&
-      process.env.NEXT_PUBLIC_TEMPLATE !== undefined &&
-      process.env.NEXT_PUBLIC_USER_ID !== undefined
-    ) {
-      emailjs
-        .send(
-          process.env.NEXT_PUBLIC_SERVICE,
-          process.env.NEXT_PUBLIC_TEMPLATE,
-          {
-            from_name: name,
-            to_name: email,
-            message: message,
-          },
-          process.env.NEXT_PUBLIC_USER_ID
-        )
-        .then(
-          (_result) => {
-            toast({
-              variant: "default",
-              title: "Mail sended!.",
-            });
-          },
-          (error) => {
-            toast({
-              variant: "destructive",
-              title: "Uh oh! Something went wrong.",
-              description: "There was a problem with your request.",
-              action: <ToastAction altText="Try again">Try again</ToastAction>,
-            });
-            console.log(error.text);
-          }
-        );
+  async function sendEmail() {
+    if (captchaRef.current !== null) {
+      let captcha: any = await verifyCaptcha(captchaRef.current !== null ? captchaRef.current.getValue() : null);
+      if (captcha !== undefined) {
+        if (captcha.success) {
+          setCaptchaCompleted(true);
+          toast({
+            title: "Email sent!",
+            description: "Email successfully sent to the recipient provided.",
+          });
+          sendMail(name, email, message);
+        } else {
+          toast({
+            variant: "destructive",
+            title: "Error",
+            description: "We were unable to send the email. Please try again later.",
+            action: <ToastAction altText="Try again">Try again</ToastAction>,
+          });
+          setCaptchaCompleted(false);
+        }
+      }
     } else {
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        title: "Error",
+        description: "We were unable to send the email. Please try again later.",
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
+      setCaptchaCompleted(false);
     }
   }
 
@@ -135,10 +132,22 @@ export default function Page() {
             <div className="flex justify-center mt-10">
               <Textarea onChange={(e) => setMessage(e.target.value)} className="max-w-[500px]" placeholder="Your Messge" />
             </div>
+            <div className="flex justify-center mt-7">
+              <ReCAPTCHA
+                ref={captchaRef}
+                sitekey={process.env.NEXT_PUBLIC_CAPTCHA_KEY !== undefined ? process.env.NEXT_PUBLIC_CAPTCHA_KEY : ""}
+              />
+            </div>
+            <div className="flex justify-center mt-1">
+              {!captchaCompleted ? <span className="text-red-500">Captcha not completed or invalid.</span> : null}
+            </div>
+
             <div className="flex justify-center mt-10">
-              <Button onClick={() => sendEmail()} variant={"outline"} disabled={handleDisableSend()}>
-                Send Email
-              </Button>
+              <Link href="/">
+                <Button onClick={() => sendEmail()} variant={"outline"} disabled={handleDisableSend()}>
+                  Send Email
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
