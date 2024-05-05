@@ -26,10 +26,6 @@ export default function Page() {
   }
 
   function sendEmail() {
-
-    console.log(process.env.NEXT_PUBLIC_SERVICE)
-    console.log(process.env.NEXT_PUBLIC_TEMPLATE)
-    console.log(process.env.NEXT_PUBLIC_USER_ID)
     if (
       process.env.NEXT_PUBLIC_SERVICE !== undefined &&
       process.env.NEXT_PUBLIC_TEMPLATE !== undefined &&
