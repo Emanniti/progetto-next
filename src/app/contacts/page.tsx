@@ -28,20 +28,20 @@ export default function Page() {
   function sendEmail() {
     debugger;
     if (
-      process.env.NEXT_PUBLIC_SERVICE !== undefined &&
-      process.env.NEXT_PUBLIC_TEMPLATE !== undefined &&
-      process.env.NEXT_PUBLIC_USER_ID !== undefined
+      process.env.SERVICE !== undefined &&
+      process.env.TEMPLATE !== undefined &&
+      process.env.USER_ID !== undefined
     ) {
       emailjs
         .send(
-          process.env.NEXT_PUBLIC_SERVICE,
-          process.env.NEXT_PUBLIC_TEMPLATE,
+          process.env.SERVICE,
+          process.env.TEMPLATE,
           {
             from_name: name,
             to_name: email,
             message: message,
           },
-          process.env.NEXT_PUBLIC_USER_ID
+          process.env.USER_ID
         )
         .then(
           (_result) => {
